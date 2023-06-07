@@ -11,3 +11,15 @@
 
   @apply btn btn-primary;
 }
+
+.insPrt:hover .insShow {
+  display: flex;
+  background-color: rgba(191, 191, 191, 0.8);
+}
+.insShow {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
