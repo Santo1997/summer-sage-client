@@ -1,13 +1,15 @@
-// import Slider from "./Slider";
-// import Classes from "./Classes";
+import Slider from "./Slider";
+import Classes from "./Classes";
 import Instructors from "./Instructors";
+import Extra from "./Extra";
 
 const Home = () => {
   return (
     <>
-      {/* <Slider /> */}
-      {/* <Classes /> */}
+      <Slider />
+      <Classes />
       <Instructors />
+      <Extra />
     </>
   );
 };
