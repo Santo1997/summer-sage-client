@@ -6,7 +6,9 @@ const Main = () => {
   return (
     <div>
       {/* <Header /> */}
-      <Outlet />
+      <div className="p-5">
+        <Outlet />
+      </div>
       {/* <Footer /> */}
     </div>
   );

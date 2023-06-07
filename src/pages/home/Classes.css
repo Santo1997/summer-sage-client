@@ -1,0 +1,13 @@
+.mainHov:hover .cldHov {
+  display: inline-flex !important ;
+}
+
+.mainHov:hover .imgHeight {
+  @apply h-52;
+}
+
+.cldHov {
+  display: none !important;
+
+  @apply btn btn-primary;
+}
