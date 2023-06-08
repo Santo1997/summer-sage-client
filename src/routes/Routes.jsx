@@ -5,6 +5,7 @@ import Home from "../pages/userboard/home/Home";
 import Instractor from "../pages/userboard/instractor/Instractor";
 import Courses from "../pages/userboard/courses/Courses";
 import Dashboard from "../layouts/Dashboard";
+import SelectCls from "../pages/dashboard/SelectCls";
 
 const router = createBrowserRouter([
   {
@@ -28,20 +29,20 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
-    // children: [
-    //   {
-    //     path: "/",
-    //     element: <Home></Home>,
-    //   },
-    //   {
-    //     path: "/instractor",
-    //     element: <Instractor></Instractor>,
-    //   },
-    //   {
-    //     path: "/courses",
-    //     element: <Courses></Courses>,
-    //   },
-    // ],
+    children: [
+      {
+        path: "selected_cls",
+        element: <SelectCls></SelectCls>,
+      },
+      // {
+      //   path: "/instractor",
+      //   element: <Instractor></Instractor>,
+      // },
+      // {
+      //   path: "/courses",
+      //   element: <Courses></Courses>,
+      // },
+    ],
   },
 ]);
 

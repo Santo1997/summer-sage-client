@@ -8,7 +8,7 @@ const DasLinks = () => {
   return (
     <>
       <li className="text-lg">
-        <Activelink to="/">
+        <Activelink to="selected_cls">
           <BiSelectMultiple /> Selected Classes
         </Activelink>
       </li>

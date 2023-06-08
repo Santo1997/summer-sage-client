@@ -1,10 +1,11 @@
+import { Outlet } from "react-router-dom";
 import DasHeader from "../base/dashboard/DasHeader";
 
 const Dashboard = () => {
   return (
     <>
       <DasHeader>
-        <h1></h1>
+        <Outlet />
       </DasHeader>
     </>
   );
