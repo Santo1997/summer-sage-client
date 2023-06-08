@@ -40,6 +40,19 @@ const DasLinks = () => {
           <VscServerProcess /> My Classes
         </Activelink>
       </li>
+      <h3 className="text-xl flex items-center gap-1 mb-2">
+        <FaChalkboardTeacher /> Admin Dashboard
+      </h3>
+      <li className="text-lg">
+        <Activelink to="manage_cls">
+          <BiSelectMultiple /> Manage Class
+        </Activelink>
+      </li>
+      <li className="text-lg ">
+        <Activelink to="manage_user">
+          <VscServerProcess /> Manage Users
+        </Activelink>
+      </li>
     </>
   );
 };

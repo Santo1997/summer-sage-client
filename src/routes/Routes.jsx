@@ -9,6 +9,7 @@ import SelectCls from "../pages/dashboard/SelectCls";
 import Enrolled from "../pages/dashboard/Enrolled";
 import AddCls from "../pages/dashboard/AddCls";
 import MyCls from "../pages/dashboard/MyCls";
+import ManageCls from "../pages/dashboard/admin/ManageCls";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "my_cls",
         element: <MyCls></MyCls>,
+      },
+      {
+        path: "manage_cls",
+        element: <ManageCls></ManageCls>,
       },
     ],
   },
