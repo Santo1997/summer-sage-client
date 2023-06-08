@@ -9,18 +9,8 @@ const Links = () => {
       <li className="text-lg">
         <Activelink to="/instractor">Instructors</Activelink>
       </li>
-      <li className="text-lg" tabIndex={0}>
-        <details>
-          <summary>Classes</summary>
-          <ul className="p-2 ">
-            <li className="text-lg">
-              <Activelink to="/">Itmes 1</Activelink>
-            </li>
-            <li className="text-lg">
-              <Activelink to="/">Itmes 2</Activelink>
-            </li>
-          </ul>
-        </details>
+      <li className="text-lg">
+        <Activelink to="/courses">Classes</Activelink>
       </li>
       <li className="text-lg">
         <Activelink to="/blog">Dashboard</Activelink>

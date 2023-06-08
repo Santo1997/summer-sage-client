@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/home/Home";
 import Instractor from "../pages/instractor/Instractor";
+import Courses from "../pages/Courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -17,10 +18,10 @@ const router = createBrowserRouter([
         path: "/instractor",
         element: <Instractor></Instractor>,
       },
-      // {
-      //   path: "order/:category",
-      //   element: <Order></Order>,
-      // },
+      {
+        path: "/courses",
+        element: <Courses></Courses>,
+      },
       // {
       //   path: "login",
       //   element: <Login></Login>,
