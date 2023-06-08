@@ -2,9 +2,12 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleProvider = new GoogleAuthProvider();
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, handleGoogleSignIn } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,6 +31,11 @@ const Login = () => {
         const errorMessage = error.message;
         setErr(errorMessage);
       });
+  };
+
+  const googleHandle = () => {
+    handleGoogleSignIn(googleProvider);
+    navigate(from, { replace: true });
   };
 
   return (
@@ -97,7 +105,10 @@ const Login = () => {
           </form>
           <div className="divider">OR Go With</div>
           <div className=" text-center mb-10">
-            <button className="btn btn-outline btn-success btn-md">
+            <button
+              onClick={googleHandle}
+              className="btn btn-outline btn-success btn-md"
+            >
               Google
             </button>
           </div>
