@@ -11,6 +11,8 @@ import AddCls from "../pages/dashboard/instractor/AddCls";
 import MyCls from "../pages/dashboard/instractor/MyCls";
 import ManageCls from "../pages/dashboard/admin/ManageCls";
 import ManageUser from "../pages/dashboard/admin/ManageUser";
+import Login from "../pages/login/Login";
+import Signup from "../pages/signup/Signup";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signup",
+        element: <Signup></Signup>,
       },
     ],
   },

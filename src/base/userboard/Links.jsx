@@ -16,10 +16,10 @@ const Links = () => {
         <Activelink to="/dashboard/selected_cls">Dashboard</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/">SignIn</Activelink>
+        <Activelink to="/login">SignIn</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/">SignUp</Activelink>
+        <Activelink to="/signup">SignUp</Activelink>
       </li>
       <li className="text-lg">
         <Activelink to="/">LogOut</Activelink>
