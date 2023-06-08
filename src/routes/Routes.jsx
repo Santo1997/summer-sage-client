@@ -8,6 +8,7 @@ import Dashboard from "../layouts/Dashboard";
 import SelectCls from "../pages/dashboard/SelectCls";
 import Enrolled from "../pages/dashboard/Enrolled";
 import AddCls from "../pages/dashboard/AddCls";
+import MyCls from "../pages/dashboard/MyCls";
 
 const router = createBrowserRouter([
   {
@@ -44,10 +45,10 @@ const router = createBrowserRouter([
         path: "add_cls",
         element: <AddCls></AddCls>,
       },
-      // {
-      //   path: "/courses",
-      //   element: <Courses></Courses>,
-      // },
+      {
+        path: "my_cls",
+        element: <MyCls></MyCls>,
+      },
     ],
   },
 ]);
