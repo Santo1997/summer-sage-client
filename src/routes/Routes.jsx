@@ -10,6 +10,7 @@ import Enrolled from "../pages/dashboard/Enrolled";
 import AddCls from "../pages/dashboard/AddCls";
 import MyCls from "../pages/dashboard/MyCls";
 import ManageCls from "../pages/dashboard/admin/ManageCls";
+import ManageUser from "../pages/dashboard/admin/ManageUser";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "manage_cls",
         element: <ManageCls></ManageCls>,
+      },
+      {
+        path: "manage_user",
+        element: <ManageUser></ManageUser>,
       },
     ],
   },
