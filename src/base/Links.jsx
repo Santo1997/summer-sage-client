@@ -7,7 +7,7 @@ const Links = () => {
         <Activelink to="/">Home</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/">Instructors</Activelink>
+        <Activelink to="/instractor">Instructors</Activelink>
       </li>
       <li className="text-lg" tabIndex={0}>
         <details>
