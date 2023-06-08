@@ -1,7 +1,7 @@
 import { GiTeacher } from "react-icons/gi";
 import { AiOutlineRead } from "react-icons/ai";
 import { FaDiscourse } from "react-icons/fa";
-import SectionTitle from "../../components/SectionTitle";
+import SectionTitle from "../../../components/SectionTitle";
 
 const InfoSection = () => {
   return (

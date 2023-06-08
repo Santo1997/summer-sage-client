@@ -1,5 +1,5 @@
 import { AiFillBank, AiFillCaretRight } from "react-icons/ai";
-import SectionTitle from "../../components/SectionTitle";
+import SectionTitle from "../../../components/SectionTitle";
 
 const Extra = () => {
   let img =

@@ -1,4 +1,4 @@
-import Activelink from "./Activelink";
+import Activelink from "../Activelink";
 
 const Links = () => {
   return (
@@ -13,7 +13,7 @@ const Links = () => {
         <Activelink to="/courses">Classes</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/blog">Dashboard</Activelink>
+        <Activelink to="/dashboard">Dashboard</Activelink>
       </li>
       <li className="text-lg">
         <Activelink to="/">SignIn</Activelink>
