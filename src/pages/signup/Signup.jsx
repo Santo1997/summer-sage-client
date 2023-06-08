@@ -1,4 +1,18 @@
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
+
 const Signup = () => {
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  const password = useRef({});
+  password.current = watch("pwd", "");
+
   return (
     <div className="hero min-h-[calc(100vh-300px)]  text-black">
       <div className="hero-content flex-col w-full lg:w-4/5">
@@ -6,7 +20,7 @@ const Signup = () => {
           <h1 className="text-5xl font-bold mb-10 ">Register now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-black text-lg font-bold ">
@@ -15,11 +29,13 @@ const Signup = () => {
               </label>
               <input
                 type="text"
-                name="username"
                 placeholder="Username"
                 className="input input-bordered"
-                required
+                {...register("username", { required: true })}
               />
+              {errors.username && (
+                <span className="mt-1">This field is required</span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -29,11 +45,13 @@ const Signup = () => {
               </label>
               <input
                 type="email"
-                name="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
+                {...register("email", { required: true })}
               />
+              {errors.email && (
+                <span className="mt-1">This field is required</span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -42,12 +60,53 @@ const Signup = () => {
                 </span>
               </label>
               <input
-                type="password"
-                name="password"
-                placeholder="password"
+                type="text"
+                placeholder="Password"
                 className="input input-bordered"
-                required
+                {...register("pwd", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /^[a-z0-9]+$/,
+                })}
               />
+              {errors.pwd?.type === "required" && (
+                <span className="mt-1">This field is required</span>
+              )}
+              {errors.pwd?.type === "minLength" && (
+                <span className="mt-1">Password must be 6 Charecture</span>
+              )}
+              {errors.pwd?.type === "maxLength" && (
+                <span className="mt-1">
+                  Password must be less 20 Charecture
+                </span>
+              )}
+              {errors.pwd?.type === "pattern" && (
+                <span className="mt-1">
+                  Password must be a smaller letter & a number
+                </span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-black text-lg font-bold">
+                  Confirm Password:
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Confirm Password"
+                className="input input-bordered"
+                {...register("rePwd", {
+                  required: true,
+                  validate: (value) =>
+                    value === password.current || "Passwords do not match",
+                })}
+              />
+              {errors.rePwd?.type === "required" && (
+                <span className="mt-1">This field is required</span>
+              )}
+              {errors.rePwd && <p>{errors.rePwd.message}</p>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -60,8 +119,11 @@ const Signup = () => {
                 name="photo"
                 placeholder="Photo URL"
                 className="input input-bordered"
-                required
+                {...register("photo", { required: true })}
               />
+              {errors.photo && (
+                <span className="mt-1">This field is required</span>
+              )}
             </div>
 
             <div className="form-control m-5 ">
