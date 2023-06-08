@@ -1,5 +1,3 @@
-import { AiFillDashboard } from "react-icons/ai";
-
 import DasLinks from "./DasLinks";
 
 const DasHeader = ({ children }) => {
@@ -18,9 +16,6 @@ const DasHeader = ({ children }) => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-5 h-full bg-slate-800 text-white">
-          <h3 className="text-xl flex items-center gap-1 mb-2">
-            <AiFillDashboard /> DashBoard
-          </h3>
           <DasLinks />
         </ul>
       </div>
