@@ -5,10 +5,10 @@ import Home from "../pages/userboard/home/Home";
 import Instractor from "../pages/userboard/instractor/Instractor";
 import Courses from "../pages/userboard/courses/Courses";
 import Dashboard from "../layouts/Dashboard";
-import SelectCls from "../pages/dashboard/SelectCls";
-import Enrolled from "../pages/dashboard/Enrolled";
-import AddCls from "../pages/dashboard/AddCls";
-import MyCls from "../pages/dashboard/MyCls";
+import SelectCls from "../pages/dashboard/student/SelectCls";
+import Enrolled from "../pages/dashboard/student/Enrolled";
+import AddCls from "../pages/dashboard/instractor/AddCls";
+import MyCls from "../pages/dashboard/instractor/MyCls";
 import ManageCls from "../pages/dashboard/admin/ManageCls";
 import ManageUser from "../pages/dashboard/admin/ManageUser";
 

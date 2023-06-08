@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
-// import Header from "../base/Header";
-// import Footer from "../base/Footer";
+import Header from "../base/userboard/Header";
+import Footer from "../base/userboard/Footer";
 
 const Main = () => {
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <div className="p-6">
         <Outlet />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
