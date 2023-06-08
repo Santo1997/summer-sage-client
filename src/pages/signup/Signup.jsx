@@ -1,14 +1,32 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const from = "/";
+
   const {
     register,
     watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    createUser(data.email, data.pwd)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        user.displayName = data.username;
+        user.photoURL = data.img;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        error.message;
+      });
+  };
 
   const password = useRef({});
   password.current = watch("pwd", "");
@@ -116,16 +134,14 @@ const Signup = () => {
               </label>
               <input
                 type="text"
-                name="photo"
                 placeholder="Photo URL"
                 className="input input-bordered"
-                {...register("photo", { required: true })}
+                {...register("img", { required: true })}
               />
-              {errors.photo && (
+              {errors.img && (
                 <span className="mt-1">This field is required</span>
               )}
             </div>
-
             <div className="form-control m-5 ">
               <button className="btn btn-primary">Submit</button>
             </div>
