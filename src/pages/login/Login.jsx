@@ -1,13 +1,34 @@
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+  const [err, setErr] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    setErr("");
+
+    signIn(data.email, data.pwd)
+      .then((userCredential) => {
+        userCredential.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErr(errorMessage);
+      });
+  };
 
   return (
     <div className="hero min-h-[calc(100vh-300px)] text-black">
@@ -30,7 +51,9 @@ const Login = () => {
                 {...register("email", { required: true })}
               />
               {errors.email && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
             </div>
             <div className="form-control">
@@ -48,7 +71,14 @@ const Login = () => {
                 })}
               />
               {errors.pwd?.type === "required" && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
+              )}
+              {err && (
+                <>
+                  <p className="text-sm text-red-600 mt-5">{err}</p>
+                </>
               )}
             </div>
             <div className="form-control m-5">
@@ -58,7 +88,11 @@ const Login = () => {
             </div>
             <p className="text-sm">
               Create an account?
-              <span className="ms-1 underline  hover:text-red-500">Signup</span>
+              <Link to="/signUp">
+                <span className="ms-1 underline  hover:text-red-500">
+                  Signup
+                </span>
+              </Link>
             </p>
           </form>
           <div className="divider">OR Go With</div>

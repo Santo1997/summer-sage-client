@@ -1,7 +1,7 @@
 import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
@@ -52,7 +52,9 @@ const Signup = () => {
                 {...register("username", { required: true })}
               />
               {errors.username && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
             </div>
             <div className="form-control">
@@ -68,7 +70,9 @@ const Signup = () => {
                 {...register("email", { required: true })}
               />
               {errors.email && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
             </div>
             <div className="form-control">
@@ -89,18 +93,22 @@ const Signup = () => {
                 })}
               />
               {errors.pwd?.type === "required" && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
               {errors.pwd?.type === "minLength" && (
-                <span className="mt-1">Password must be 6 Charecture</span>
+                <span className="mt-1 text-red-600">
+                  Password must be 6 Charecture
+                </span>
               )}
               {errors.pwd?.type === "maxLength" && (
-                <span className="mt-1">
+                <span className="mt-1 text-red-600">
                   Password must be less 20 Charecture
                 </span>
               )}
               {errors.pwd?.type === "pattern" && (
-                <span className="mt-1">
+                <span className="mt-1 text-red-600">
                   Password must be a smaller letter & a number
                 </span>
               )}
@@ -122,9 +130,15 @@ const Signup = () => {
                 })}
               />
               {errors.rePwd?.type === "required" && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
-              {errors.rePwd && <p>{errors.rePwd.message}</p>}
+              {errors.rePwd && (
+                <span className="mt-1 text-red-600">
+                  {errors.rePwd.message}
+                </span>
+              )}
             </div>
             <div className="form-control">
               <label className="label">
@@ -139,7 +153,9 @@ const Signup = () => {
                 {...register("img", { required: true })}
               />
               {errors.img && (
-                <span className="mt-1">This field is required</span>
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
               )}
             </div>
             <div className="form-control m-5 ">
@@ -147,7 +163,11 @@ const Signup = () => {
             </div>
             <p className="text-sm">
               Already an account?
-              <span className="ms-1 underline  hover:text-red-500">Signin</span>
+              <Link to="/login">
+                <span className="ms-1 underline  hover:text-red-500">
+                  Signin
+                </span>
+              </Link>
             </p>
           </form>
         </div>
