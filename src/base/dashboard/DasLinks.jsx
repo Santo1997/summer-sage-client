@@ -13,7 +13,7 @@ const DasLinks = () => {
         </Activelink>
       </li>
       <li className="text-lg ">
-        <Activelink to="/">
+        <Activelink to="enrolled">
           <VscServerProcess /> Enrolled Classes
         </Activelink>
       </li>

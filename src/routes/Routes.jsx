@@ -6,6 +6,7 @@ import Instractor from "../pages/userboard/instractor/Instractor";
 import Courses from "../pages/userboard/courses/Courses";
 import Dashboard from "../layouts/Dashboard";
 import SelectCls from "../pages/dashboard/SelectCls";
+import Enrolled from "../pages/dashboard/Enrolled";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +35,10 @@ const router = createBrowserRouter([
         path: "selected_cls",
         element: <SelectCls></SelectCls>,
       },
-      // {
-      //   path: "/instractor",
-      //   element: <Instractor></Instractor>,
-      // },
+      {
+        path: "enrolled",
+        element: <Enrolled></Enrolled>,
+      },
       // {
       //   path: "/courses",
       //   element: <Courses></Courses>,
