@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import Links from "./Links";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <>
       <div className="navbar bg-slate-800 text-white">
@@ -36,9 +40,20 @@ const Header = () => {
             <Links></Links>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
-        </div>
+        {user && (
+          <>
+            <div className="navbar-end me-5">
+              <div className="flex items-center gap-4">
+                <p>{user.displayName}</p>
+                <div className="avatar relative ">
+                  <div className="w-10 rounded-full overflow-hidden">
+                    <img src={user.photoURL} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
