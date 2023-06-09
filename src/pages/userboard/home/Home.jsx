@@ -1,17 +1,36 @@
 import Slider from "./Slider";
-import Classes from "./Classes";
+import Classes from "./classses/Classes";
 import InfoSection from "./InfoSection";
-import Instructors from "./Instructors";
+import Instructors from "./instractorSection/Instructors";
 import Extra from "./Extra";
+import { useContext, useEffect, useState } from "react";
+import { CourseContext } from "../../../provider/DataProvider";
 
 const Home = () => {
+  const courses = useContext(CourseContext);
+
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    if (courses.length == 0) {
+      setLoader(true);
+    } else {
+      setLoader(false);
+    }
+  }, [courses]);
+
   return (
     <>
-      <Slider />
-      <Classes />
-      <InfoSection />
-      <Instructors />
-      <Extra />
+      {loader ? (
+        <progress className="progress w-56"></progress>
+      ) : (
+        <>
+          <Slider />
+          <Classes courses={courses} />
+          <InfoSection />
+          <Instructors courses={courses} />
+          <Extra />
+        </>
+      )}
     </>
   );
 };
