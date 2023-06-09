@@ -33,7 +33,9 @@ const Links = () => {
       {user ? (
         <>
           <li className="text-lg">
-            <Activelink to="/dashboard/selected_cls">Dashboard</Activelink>
+            <Activelink to="/dashboard/selected_cls" target="_blank">
+              Dashboard
+            </Activelink>
           </li>
           <li className="text-lg">
             <button className="btn-md" onClick={handleLogOut}>

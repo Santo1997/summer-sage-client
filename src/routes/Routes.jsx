@@ -13,6 +13,7 @@ import ManageCls from "../pages/dashboard/admin/ManageCls";
 import ManageUser from "../pages/dashboard/admin/ManageUser";
 import Login from "../pages/login/Login";
 import Signup from "../pages/signup/Signup";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoutes>
+        <Dashboard />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "selected_cls",
