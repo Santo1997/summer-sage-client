@@ -46,7 +46,7 @@ const Login = () => {
         user: "student",
       };
 
-      postToDB(newUser);
+      postToDB("allusers", newUser, "User");
       navigate(from, { replace: true });
     });
   };

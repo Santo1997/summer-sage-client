@@ -29,7 +29,7 @@ const Signup = () => {
         const user = userCredential.user;
         user.displayName = data.username;
         user.photoURL = data.img;
-        postToDB(newUser);
+        postToDB("allusers", newUser, "User");
         console.log(newUser);
         navigate(from, { replace: true });
       })

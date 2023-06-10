@@ -1,16 +1,15 @@
 import { toast } from "react-hot-toast";
 
-const postToDB = (dataItm) => {
-  fetch("http://localhost:5000/allusers", {
+const postToDB = (route, dataItm, notify) => {
+  fetch(`http://localhost:5000/${route}`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(dataItm),
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.insertedId) {
-        toast.success("User Added");
+        toast.success(` ${notify}  Added`);
       }
     });
 };

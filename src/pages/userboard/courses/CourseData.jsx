@@ -1,13 +1,41 @@
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useContext } from "react";
+import { BiSelectMultiple } from "react-icons/bi";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import { postToDB } from "../../../utilities/apiFetch";
 
 const CourseData = ({ course }) => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const {
+    _id,
     course_name,
     course_img,
     course_price,
     student_enroll,
     available_seats,
   } = course;
+
+  const handleCart = (itm) => {
+    itm;
+    if (user && user.email) {
+      const cartItm = {
+        langId: _id,
+        user: user.email,
+        course_name,
+        course_img,
+        course_price,
+        student_enroll,
+        available_seats,
+      };
+      postToDB("carts", cartItm, "Language");
+    } else {
+      console.log("first");
+      navigate("/login", { state: { from: location } });
+    }
+  };
 
   return (
     <>
@@ -27,8 +55,11 @@ const CourseData = ({ course }) => {
             <span>Price: ${course_price}</span>
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-sm btn-accent text-white">
-              <AiOutlineShoppingCart /> Add Cart
+            <button
+              onClick={() => handleCart(course)}
+              className="btn btn-sm btn-accent text-white"
+            >
+              <BiSelectMultiple /> Select
             </button>
           </div>
         </div>
