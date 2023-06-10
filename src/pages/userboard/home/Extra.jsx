@@ -1,9 +1,10 @@
 import { AiFillBank, AiFillCaretRight } from "react-icons/ai";
+import { FaMobileAlt } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle";
 
 const Extra = () => {
   let img =
-    "https://i.ibb.co/19cZpB9/360-F-46340033-r4r-ZUll7-MDn-SXM4n-S87qoy-AKEg-BGXIKE.jpg";
+    "https://i.ibb.co/Ctj60Pt/cowomen-n964uuel-NJY-unsplash-796x531.jpg";
   return (
     <>
       <SectionTitle heading="Ourselves"></SectionTitle>
@@ -21,10 +22,14 @@ const Extra = () => {
             </div>
           </div>
           <div className="grid grid-cols-3 p-10 pt-2">
-            <AiFillBank size={70} />
+            <FaMobileAlt size={70} />
             <div className="col-span-2">
-              <h2 className="card-title">Come And Visit Us</h2>
-              <p>359 Van Brunt St, Brooklyn, NY 11231, USA</p>
+              <h2 className="card-title">Book A Free Lesson</h2>
+              <p>
+                <span>+880 1234567894</span>
+                <br />
+                <span>+880 9876543215</span>
+              </p>
             </div>
           </div>
         </div>

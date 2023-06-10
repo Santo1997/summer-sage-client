@@ -4,7 +4,7 @@ const ClsData = ({ course }) => {
     course_img,
     course_price,
     description,
-    students_enrolled,
+    student_enroll,
     available_seats,
   } = course;
 
@@ -17,7 +17,7 @@ const ClsData = ({ course }) => {
         <h2 className="card-title">{course_name}</h2>
         <h2 className="card-title"></h2>
         <p>{description}</p>
-        <p>Enrolled: {students_enrolled}</p>
+        <p>Enrolled: {student_enroll}</p>
         <p>Available: {available_seats}</p>
         <p>Price:$ {course_price}</p>
       </div>
