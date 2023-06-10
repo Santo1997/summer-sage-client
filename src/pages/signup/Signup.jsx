@@ -17,16 +17,11 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const img = data.img;
-    const name = data.username;
-    const email = data.email;
-    const user = "student";
-
     const newUser = {
-      img,
-      name,
-      email,
-      user,
+      img: data.img,
+      name: data.username,
+      email: data.email,
+      user: "student",
     };
 
     createUser(data.email, data.pwd)

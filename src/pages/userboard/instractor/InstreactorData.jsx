@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const InstreactorData = ({ course }) => {
   const { course_name, course_teacher } = course;
-
   const [userImg, setUserImg] = useState();
 
   useEffect(() => {
@@ -12,8 +11,6 @@ const InstreactorData = ({ course }) => {
         setUserImg(data[0].img);
       });
   }, []);
-
-  console.log(userImg);
 
   return (
     <div className="card shadow-xl">

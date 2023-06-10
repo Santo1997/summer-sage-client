@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
+import { postToDB } from "../../utilities/apiFetch";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -34,8 +35,20 @@ const Login = () => {
   };
 
   const googleHandle = () => {
-    handleGoogleSignIn(googleProvider);
-    navigate(from, { replace: true });
+    handleGoogleSignIn(googleProvider).then((result) => {
+      GoogleAuthProvider.credentialFromResult(result);
+      const user = result.user;
+
+      const newUser = {
+        img: user.photoURL,
+        name: user.displayName,
+        email: user.email,
+        user: "student",
+      };
+
+      postToDB(newUser);
+      navigate(from, { replace: true });
+    });
   };
 
   return (

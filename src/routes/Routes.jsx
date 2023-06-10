@@ -15,12 +15,14 @@ import Login from "../pages/login/Login";
 import Signup from "../pages/signup/Signup";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../pages/error/Error";
+import { coursesAndTeachers } from "../loader/DataLoader";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
     errorElement: <Error />,
+    loader: coursesAndTeachers,
     children: [
       {
         path: "/",

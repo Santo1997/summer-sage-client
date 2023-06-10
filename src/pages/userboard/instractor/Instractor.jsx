@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import InstractorData from "./InstreactorData";
-import { CourseContext } from "../../../provider/DataProvider";
+import { CourseContext } from "../../../layouts/Main";
 
 const Instractor = () => {
   const courses = useContext(CourseContext);
