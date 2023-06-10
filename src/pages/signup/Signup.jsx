@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import { postToDB } from "../../utilities/apiFetch";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
@@ -16,11 +17,25 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const img = data.img;
+    const name = data.username;
+    const email = data.email;
+    const user = "student";
+
+    const newUser = {
+      img,
+      name,
+      email,
+      user,
+    };
+
     createUser(data.email, data.pwd)
       .then((userCredential) => {
         const user = userCredential.user;
         user.displayName = data.username;
         user.photoURL = data.img;
+        postToDB(newUser);
+        console.log(newUser);
         navigate(from, { replace: true });
       })
       .catch((error) => {
