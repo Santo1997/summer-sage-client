@@ -3,9 +3,11 @@ import { BiSelectMultiple } from "react-icons/bi";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postToDB } from "../../../utilities/apiFetch";
+import useCart from "../../../hooks/useCart";
 
 const CourseData = ({ course }) => {
   const { user } = useContext(AuthContext);
+  const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,7 +32,7 @@ const CourseData = ({ course }) => {
         student_enroll,
         available_seats,
       };
-      postToDB("carts", cartItm, "Language");
+      postToDB("cart", cartItm, "Language", refetch);
     } else {
       console.log("first");
       navigate("/login", { state: { from: location } });
