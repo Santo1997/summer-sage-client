@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { postToDB } from "../../../utilities/apiFetch";
 
 const AddCls = () => {
   const { user } = useContext(AuthContext);
@@ -11,10 +12,11 @@ const AddCls = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const { clsName, photo, price, seat, description } = data;
+    //TODO: photo add
+    const { clsName, price, seat, description } = data;
     const newCls = {
       course_name: clsName,
-      course_img: photo,
+      course_img: "https://i.ibb.co/fpFBz2K/Evening-English-1.jpg",
       course_teacher: {
         name: user.displayName,
         email: user.email,
@@ -23,8 +25,9 @@ const AddCls = () => {
       description,
       student_enroll: 0,
       available_seats: parseInt(seat),
+      status: "pending",
     };
-    console.log(newCls);
+    postToDB("course", newCls, "Language");
   };
 
   return (
