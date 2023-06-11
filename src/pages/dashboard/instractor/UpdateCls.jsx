@@ -1,9 +1,19 @@
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
-import { putToDB } from "../../../utilities/apiFetch";
+import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const UpdateCls = () => {
-  const courseData = useLoaderData();
+  const param = useParams().id;
+  const [axiosSecure] = useAxiosSecure();
+  const [courseData, setCourseData] = useState([]);
+
+  useEffect(() => {
+    axiosSecure
+      .get(`/courses/${param}`)
+      .then((response) => setCourseData(response.data));
+  }, []);
 
   const { _id, course_name, available_seats, course_price, description } =
     courseData;
@@ -15,18 +25,20 @@ const UpdateCls = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    //TODO: photo add
     const { seat, price, description } = data;
-
     const updateCls = {
       course_price: parseInt(price),
       description,
       available_seats: parseInt(seat),
     };
 
-    const route = `updateCourses/${_id}`;
-
-    putToDB(route, updateCls, "Class");
+    axiosSecure.put(`/updateCourses/${_id}`, updateCls).then((response) => {
+      if (response.data.modifiedCount > 0) {
+        toast.success("Class Updated");
+      } else {
+        toast.error("Need Some Update");
+      }
+    });
   };
 
   return (

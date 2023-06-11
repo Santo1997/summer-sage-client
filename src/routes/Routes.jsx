@@ -70,8 +70,6 @@ const router = createBrowserRouter([
       {
         path: "update_cls/:id",
         element: <UpdateCls></UpdateCls>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses/${params.id}`),
       },
       {
         path: "my_cls",

@@ -1,13 +1,17 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { postToDB } from "../../../utilities/apiFetch";
+// import { postToDB } from "../../../utilities/apiFetch";
 import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const imgUploadKey = import.meta.env.VITE_IMGKEY;
 
 const AddCls = () => {
   const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
+
   const {
     register,
     handleSubmit,
@@ -37,8 +41,13 @@ const AddCls = () => {
             available_seats: parseInt(seat),
             status: "pending",
           };
-          postToDB("course", newCls, "Language");
-          reset();
+          // postToDB("course", newCls, "Language");
+          axiosSecure.post("/course", newCls).then((response) => {
+            if (response.data.insertedId) {
+              reset();
+              toast.success("Class Updated");
+            }
+          });
         }
       });
   };
