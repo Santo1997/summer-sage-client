@@ -21,7 +21,7 @@ const Signup = () => {
       img: data.img,
       name: data.username,
       email: data.email,
-      user: "student",
+      role: "student",
     };
 
     createUser(data.email, data.pwd)

@@ -43,7 +43,7 @@ const Login = () => {
         img: user.photoURL,
         name: user.displayName,
         email: user.email,
-        user: "student",
+        role: "student",
       };
 
       postToDB("allusers", newUser, "User");

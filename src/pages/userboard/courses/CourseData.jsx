@@ -41,7 +41,12 @@ const CourseData = ({ course }) => {
 
   return (
     <>
-      <div className="card card-compact shadow-xl">
+      <div
+        className="card card-compact shadow-xl"
+        style={{
+          backgroundColor: available_seats === 0 && "red",
+        }}
+      >
         <figure>
           <img src={course_img} />
         </figure>
@@ -59,6 +64,7 @@ const CourseData = ({ course }) => {
           <div className="card-actions justify-end">
             <button
               onClick={() => handleCart(course)}
+              disabled={available_seats === 0}
               className="btn btn-sm btn-accent text-white"
             >
               <BiSelectMultiple /> Select
