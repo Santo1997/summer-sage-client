@@ -1,4 +1,32 @@
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../provider/AuthProvider";
+
 const AddCls = () => {
+  const { user } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const { clsName, photo, price, seat, description } = data;
+    const newCls = {
+      course_name: clsName,
+      course_img: photo,
+      course_teacher: {
+        name: user.displayName,
+        email: user.email,
+      },
+      course_price: parseInt(price),
+      description,
+      student_enroll: 0,
+      available_seats: parseInt(seat),
+    };
+    console.log(newCls);
+  };
+
   return (
     <div className="hero min-h-[calc(100vh-300px)]  text-black">
       <div className="hero-content flex-col w-full lg:w-4/5">
@@ -6,7 +34,7 @@ const AddCls = () => {
           <h1 className="text-5xl font-bold mb-10">Add A Class</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <input type="hidden" name="status" defaultValue="pending" />
             <div className="form-control">
               <label className="label">
@@ -16,11 +44,15 @@ const AddCls = () => {
               </label>
               <input
                 type="text"
-                name="clsName"
-                placeholder="Class name"
-                className="input input-bordered setInput  "
-                required
+                placeholder="Class Name"
+                className="input input-bordered "
+                {...register("clsName", { required: true })}
               />
+              {errors.clsName && (
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="form-control grid grid-cols-3 items-center">
               <label className="label">
@@ -28,35 +60,32 @@ const AddCls = () => {
                   Class Img:
                 </span>
               </label>
-              <input type="file" name="photo" required className="col-span-2" />
+              <input
+                type="file"
+                className="col-span-2"
+                {...register("photo", { required: false })}
+              />
+              {errors.photo && (
+                <span className="mt-1 text-red-600 col-span-2">
+                  This field is required
+                </span>
+              )}
             </div>
-            <div className="form-control">
+            <div className="form-control flex-row items-center justify-between">
               <label className="label">
                 <span className="label-text text-black text-lg font-bold">
                   Instructor name
                 </span>
               </label>
-              <input
-                type="text"
-                name="instName"
-                placeholder="Instructor name"
-                className="input input-bordered setInput  "
-                required
-              />
+              <h1>Hossain Santo</h1>
             </div>
-            <div className="form-control">
+            <div className="form-control flex-row items-center justify-between">
               <label className="label">
                 <span className="label-text text-black text-lg font-bold">
                   Instructor Email
                 </span>
               </label>
-              <input
-                type="text"
-                name="instMail"
-                placeholder="Instructor Email"
-                className="input input-bordered setInput  "
-                required
-              />
+              <h1>Hossain Santo</h1>
             </div>
             <div className="form-control grid grid-cols-2">
               <label className="label">
@@ -66,11 +95,15 @@ const AddCls = () => {
               </label>
               <input
                 type="number"
-                name="seat"
                 placeholder="Available"
-                className="input input-bordered setInput  "
-                required
+                className="input input-bordered "
+                {...register("seat", { required: true })}
               />
+              {errors.seat && (
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="form-control grid grid-cols-2">
               <label className="label">
@@ -80,11 +113,33 @@ const AddCls = () => {
               </label>
               <input
                 type="number"
-                name="price"
                 placeholder="Price"
-                className="input input-bordered setInput  "
-                required
+                className="input input-bordered "
+                {...register("price", { required: true })}
               />
+              {errors.price && (
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-black text-lg font-bold">
+                  Details:
+                </span>
+              </label>
+              <textarea
+                placeholder="Details"
+                className="input input-bordered h-28 "
+                {...register("description", { required: true })}
+              ></textarea>
+
+              {errors.description && (
+                <span className="mt-1 text-red-600">
+                  This field is required
+                </span>
+              )}
             </div>
             <div className="form-control m-5 ">
               <button className="btn btn-primary">Add</button>
