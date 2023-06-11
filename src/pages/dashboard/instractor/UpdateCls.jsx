@@ -1,9 +1,13 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
+import { putToDB } from "../../../utilities/apiFetch";
 
 const UpdateCls = () => {
-  const { user } = useContext(AuthContext);
+  const courseData = useLoaderData();
+
+  const { _id, course_name, available_seats, course_price, description } =
+    courseData;
+
   const {
     register,
     handleSubmit,
@@ -12,83 +16,35 @@ const UpdateCls = () => {
 
   const onSubmit = (data) => {
     //TODO: photo add
-    const { clsName, price, seat, description } = data;
+    const { seat, price, description } = data;
+
     const updateCls = {
-      course_name: clsName,
-      course_img: "https://i.ibb.co/fpFBz2K/Evening-English-1.jpg",
-      course_teacher: {
-        name: user.displayName,
-        email: user.email,
-      },
       course_price: parseInt(price),
       description,
-      student_enroll: 0,
       available_seats: parseInt(seat),
-      status: "pending",
     };
-    // console.log(updateCls);
-    // postToDB("course", newCls, "Language");
+
+    const route = `updateCourses/${_id}`;
+
+    putToDB(route, updateCls, "Class");
   };
 
   return (
     <div className="hero min-h-[calc(100vh-300px)]  text-black">
       <div className="hero-content flex-col w-full lg:w-4/5">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold mb-10">Add A Class</h1>
+          <h1 className="text-5xl font-bold mb-10">Update A Class</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <input type="hidden" name="status" defaultValue="pending" />
-            <div className="form-control">
+            <div className="form-control flex-row items-center justify-between">
               <label className="label">
                 <span className="label-text text-black text-lg font-bold ">
                   Class name:
                 </span>
               </label>
-              <input
-                type="text"
-                placeholder="Class Name"
-                className="input input-bordered "
-                {...register("clsName", { required: true })}
-              />
-              {errors.clsName && (
-                <span className="mt-1 text-red-600">
-                  This field is required
-                </span>
-              )}
-            </div>
-            <div className="form-control grid grid-cols-3 items-center">
-              <label className="label">
-                <span className="label-text text-black text-lg font-bold">
-                  Class Img:
-                </span>
-              </label>
-              <input
-                type="file"
-                className="col-span-2"
-                {...register("photo", { required: false })}
-              />
-              {errors.photo && (
-                <span className="mt-1 text-red-600 col-span-2">
-                  This field is required
-                </span>
-              )}
-            </div>
-            <div className="form-control flex-row items-center justify-between">
-              <label className="label">
-                <span className="label-text text-black text-lg font-bold">
-                  Instructor name
-                </span>
-              </label>
-              <h1>Hossain Santo</h1>
-            </div>
-            <div className="form-control flex-row items-center justify-between">
-              <label className="label">
-                <span className="label-text text-black text-lg font-bold">
-                  Instructor Email
-                </span>
-              </label>
-              <h1>Hossain Santo</h1>
+              <h1 className="text-2xl font-bold">{course_name}</h1>
             </div>
             <div className="form-control grid grid-cols-2">
               <label className="label">
@@ -98,6 +54,7 @@ const UpdateCls = () => {
               </label>
               <input
                 type="number"
+                defaultValue={available_seats}
                 placeholder="Available"
                 className="input input-bordered "
                 {...register("seat", { required: true })}
@@ -116,6 +73,7 @@ const UpdateCls = () => {
               </label>
               <input
                 type="number"
+                defaultValue={course_price}
                 placeholder="Price"
                 className="input input-bordered "
                 {...register("price", { required: true })}
@@ -134,6 +92,7 @@ const UpdateCls = () => {
               </label>
               <textarea
                 placeholder="Details"
+                defaultValue={description}
                 className="input input-bordered h-28 "
                 {...register("description", { required: true })}
               ></textarea>

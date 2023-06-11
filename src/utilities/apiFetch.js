@@ -16,4 +16,22 @@ const postToDB = (route, dataItm, notify, refetch) => {
     });
 };
 
-export { postToDB };
+const putToDB = (route, dataItm, notify, refetch) => {
+  axios
+    .put(`http://localhost:5000/${route}`, dataItm, {
+      headers: { "content-type": "application/json" },
+    })
+    .then((response) => {
+      console.log(response.data);
+      if (response.data.modifiedCount > 0) {
+        if (refetch) {
+          refetch();
+        }
+        toast.success(`${notify} Updated`);
+      } else {
+        toast.error("Need Some Update");
+      }
+    });
+};
+
+export { postToDB, putToDB };
