@@ -1,6 +1,7 @@
 import { BsFillTrashFill } from "react-icons/bs";
 import useCart from "../../../hooks/useCart";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const SelectCls = () => {
   const [cart, refetch] = useCart();
@@ -13,6 +14,7 @@ const SelectCls = () => {
         .delete(`http://localhost:5000/carts/${id}`)
         .then((response) => {
           if (response.data.deletedCount > 0) {
+            toast.success(` Class Delete`);
             refetch();
           }
         })

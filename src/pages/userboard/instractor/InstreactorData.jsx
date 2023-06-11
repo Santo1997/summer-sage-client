@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const InstreactorData = ({ course }) => {
-  const { course_name, course_teacher } = course;
+  const { course_teacher } = course;
   const [userImg, setUserImg] = useState();
 
   useEffect(() => {
@@ -20,9 +20,6 @@ const InstreactorData = ({ course }) => {
       <div className="card-body">
         <h2 className="card-title">{course_teacher.name}</h2>
         <p>Email: {course_teacher.email}</p>
-        <div className="card-actions justify-end">
-          <p className="">Name of the Classes: {course_name}</p>
-        </div>
       </div>
     </div>
   );
