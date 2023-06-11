@@ -8,6 +8,7 @@ import Dashboard from "../layouts/Dashboard";
 import SelectCls from "../pages/dashboard/student/SelectCls";
 import Enrolled from "../pages/dashboard/student/Enrolled";
 import AddCls from "../pages/dashboard/instractor/AddCls";
+import UpdateCls from "../pages/dashboard/instractor/UpdateCls";
 import MyCls from "../pages/dashboard/instractor/MyCls";
 import ManageCls from "../pages/dashboard/admin/ManageCls";
 import ManageUser from "../pages/dashboard/admin/ManageUser";
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "add_cls",
         element: <AddCls></AddCls>,
+      },
+      {
+        path: "update_cls/:id",
+        element: <UpdateCls></UpdateCls>,
       },
       {
         path: "my_cls",

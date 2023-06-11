@@ -66,7 +66,7 @@ const MyCls = () => {
                     <h2 className="font-bold">{itm.feedback}</h2>
                   </td>
                   <td className="text-center">
-                    <Link>
+                    <Link to={`../update_cls/${itm._id}`}>
                       <button className="btn btn-xs btn-outline me-3 btn-accent">
                         Update
                       </button>

@@ -1,46 +1,33 @@
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { postToDB } from "../../../utilities/apiFetch";
-import axios from "axios";
+import { useForm } from "react-hook-form";
 
-const imgUploadKey = import.meta.env.VITE_IMGKEY;
-
-const AddCls = () => {
+const UpdateCls = () => {
   const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
+    //TODO: photo add
     const { clsName, price, seat, description } = data;
-    const formData = new FormData();
-    formData.append("image", data.photo[0]);
-    axios
-      .post(`https://api.imgbb.com/1/upload?key=${imgUploadKey}`, formData)
-      .then((response) => {
-        if (response.data.success) {
-          const imgUrl = response.data.data.display_url;
-          const newCls = {
-            course_name: clsName,
-            course_img: imgUrl,
-            course_teacher: {
-              name: user.displayName,
-              email: user.email,
-            },
-            course_price: parseInt(price),
-            description,
-            student_enroll: 0,
-            available_seats: parseInt(seat),
-            status: "pending",
-          };
-          postToDB("course", newCls, "Language");
-          reset();
-        }
-      });
+    const updateCls = {
+      course_name: clsName,
+      course_img: "https://i.ibb.co/fpFBz2K/Evening-English-1.jpg",
+      course_teacher: {
+        name: user.displayName,
+        email: user.email,
+      },
+      course_price: parseInt(price),
+      description,
+      student_enroll: 0,
+      available_seats: parseInt(seat),
+      status: "pending",
+    };
+    // console.log(updateCls);
+    // postToDB("course", newCls, "Language");
   };
 
   return (
@@ -167,4 +154,4 @@ const AddCls = () => {
   );
 };
 
-export default AddCls;
+export default UpdateCls;
