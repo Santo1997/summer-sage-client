@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
-// import { postToDB } from "../../../utilities/apiFetch";
 import axios from "axios";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
@@ -41,7 +40,6 @@ const AddCls = () => {
             available_seats: parseInt(seat),
             status: "pending",
           };
-          // postToDB("course", newCls, "Language");
           axiosSecure.post("/course", newCls).then((response) => {
             if (response.data.insertedId) {
               reset();
@@ -102,7 +100,7 @@ const AddCls = () => {
                   Instructor name
                 </span>
               </label>
-              <h1>Hossain Santo</h1>
+              <h1>{user.displayName}</h1>
             </div>
             <div className="form-control flex-row items-center justify-between">
               <label className="label">
@@ -110,7 +108,7 @@ const AddCls = () => {
                   Instructor Email
                 </span>
               </label>
-              <h1>Hossain Santo</h1>
+              <h1>{user.email}</h1>
             </div>
             <div className="form-control grid grid-cols-2">
               <label className="label">

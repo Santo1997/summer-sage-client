@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
-import { postToDB } from "../../utilities/apiFetch";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const googleProvider = new GoogleAuthProvider();
 
 const Login = () => {
   const { signIn, handleGoogleSignIn } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,6 +17,7 @@ const Login = () => {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -46,8 +48,12 @@ const Login = () => {
         role: "student",
       };
 
-      postToDB("allusers", newUser, "User");
-      navigate(from, { replace: true });
+      axiosSecure.post("/allusers", newUser).then((response) => {
+        if (response.data.insertedId) {
+          reset();
+          navigate(from, { replace: true });
+        }
+      });
     });
   };
 
@@ -84,7 +90,7 @@ const Login = () => {
                 </span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="input input-bordered"
                 {...register("pwd", {
@@ -96,12 +102,8 @@ const Login = () => {
                   This field is required
                 </span>
               )}
-              {err && (
-                <>
-                  <p className="text-sm text-red-600 mt-5">{err}</p>
-                </>
-              )}
             </div>
+            {err && <span className="text-sm text-red-600 mt-5">{err}</span>}
             <div className="form-control m-5">
               <button type="submit" className="btn btn-primary">
                 Login

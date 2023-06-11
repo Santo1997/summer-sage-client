@@ -38,9 +38,6 @@ const Instractor = () => {
               <h2 className="card-title">{courses[0].course_teacher.name}</h2>
               <p>
                 <span> Email: {courses[0].course_teacher.email}</span>
-                <br />
-                <span>Name of the Classes: {courses[0].course_name} </span>
-                <br />
               </p>
             </div>
           </div>

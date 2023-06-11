@@ -1,22 +1,28 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import { postToDB } from "../../utilities/apiFetch";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { postToDB } from "../../utilities/apiFetch";
 
 const Signup = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
+  const [err, setErr] = useState("");
+
   const navigate = useNavigate();
   const from = "/";
 
   const {
     register,
     watch,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
+    setErr("");
     const newUser = {
       img: data.img,
       name: data.username,
@@ -26,15 +32,18 @@ const Signup = () => {
 
     createUser(data.email, data.pwd)
       .then((userCredential) => {
-        const user = userCredential.user;
-        user.displayName = data.username;
-        user.photoURL = data.img;
-        postToDB("allusers", newUser, "User");
-        console.log(newUser);
-        navigate(from, { replace: true });
+        userCredential.user;
+        updateUserProfile(data.username, data.img).then(() => {
+          axiosSecure.post("/allusers", newUser).then((response) => {
+            if (response.data.insertedId) {
+              reset();
+              navigate(from, { replace: true });
+            }
+          });
+        });
       })
       .catch((error) => {
-        error.message;
+        setErr(error.message);
       });
   };
 
@@ -92,7 +101,7 @@ const Signup = () => {
                 </span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 className="input input-bordered"
                 {...register("pwd", {
@@ -130,7 +139,7 @@ const Signup = () => {
                 </span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Confirm Password"
                 className="input input-bordered"
                 {...register("rePwd", {
@@ -168,6 +177,7 @@ const Signup = () => {
                 </span>
               )}
             </div>
+            {err && <span className="text-sm text-red-600 mt-5">{err}</span>}
             <div className="form-control m-5 ">
               <button className="btn btn-primary">Submit</button>
             </div>
@@ -175,7 +185,7 @@ const Signup = () => {
               Already an account?
               <Link to="/login">
                 <span className="ms-1 underline  hover:text-red-500">
-                  Signin
+                  Login
                 </span>
               </Link>
             </p>

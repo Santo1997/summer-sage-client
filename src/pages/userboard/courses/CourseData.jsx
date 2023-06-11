@@ -15,6 +15,7 @@ const CourseData = ({ course }) => {
     _id,
     course_name,
     course_img,
+    course_teacher,
     course_price,
     student_enroll,
     available_seats,
@@ -53,7 +54,7 @@ const CourseData = ({ course }) => {
         <div className="card-body">
           <h2 className="card-title">{course_name}</h2>
           <p>
-            <span>Instructor name</span>
+            <span className="font-bold">Instructor: {course_teacher.name}</span>
             <br />
             <span>Student Enroll: {student_enroll}</span>
             <br />
