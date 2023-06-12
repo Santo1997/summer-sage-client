@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const SelectCls = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch] = useCart("carts");
 
   const handleDelete = (id) => {
     const confirmed = window.confirm("Want to delete item?");
