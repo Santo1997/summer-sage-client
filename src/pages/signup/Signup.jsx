@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { postToDB } from "../../utilities/apiFetch";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
