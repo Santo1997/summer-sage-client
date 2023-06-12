@@ -7,20 +7,26 @@ const ManageCls = () => {
   const [axiosSecure] = useAxiosSecure();
 
   //TODO: confirm to Approve
+  const accessDBHandle = (id, itmData) => {
+    axiosSecure.put(`/updateStatus/${id}`, itmData).then((response) => {
+      if (response.data.modifiedCount > 0) {
+        toast.success("Course Status Updated");
+        refetch();
+      }
+    });
+  };
 
-  const handleApprove = (itm) => {
-    console.log(itm);
+  const handleApprove = (id) => {
     const updateStatus = {
       status: "confirm",
     };
-    axiosSecure
-      .put(`/updateStatus/${itm._id}`, updateStatus)
-      .then((response) => {
-        if (response.data.modifiedCount > 0) {
-          toast.success("Course Status Updated");
-          refetch();
-        }
-      });
+    accessDBHandle(id, updateStatus);
+  };
+  const handleDeny = (id) => {
+    const updateStatus = {
+      status: "denied",
+    };
+    accessDBHandle(id, updateStatus);
   };
 
   return (
@@ -84,12 +90,15 @@ const ManageCls = () => {
                 {itm.status === "pending" ? (
                   <>
                     <button
-                      onClick={() => handleApprove(itm)}
+                      onClick={() => handleApprove(itm._id)}
                       className="btn btn-outline btn-xs btn-success"
                     >
                       Approve
                     </button>
-                    <button className="btn btn-outline btn-xs btn-error">
+                    <button
+                      onClick={() => handleDeny(itm._id)}
+                      className="btn btn-outline btn-xs btn-error"
+                    >
                       Deny
                     </button>
                   </>
