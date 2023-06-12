@@ -70,7 +70,7 @@ const Extra = () => {
               <AiFillCaretRight /> Easy Transport
             </li>
             <li className="flex items-center gap-2">
-              <AiFillCaretRight /> Dog Friendly
+              <AiFillCaretRight /> Friendly
             </li>
           </ul>
           <button className="btn btn-lg btn-accent border-0 w-full rounded-none hover:text-accent hover:bg-slate-700 absolute bottom-0 right-0">

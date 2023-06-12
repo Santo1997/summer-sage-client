@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { BiSelectMultiple } from "react-icons/bi";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postToDB } from "../../../utilities/apiFetch";
-import useCart from "../../../hooks/useCart";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
 
 const CourseData = ({ course }) => {
   const { user } = useContext(AuthContext);
-  const [, refetch] = useCart();
+  const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,9 +33,13 @@ const CourseData = ({ course }) => {
         student_enroll,
         available_seats,
       };
-      postToDB("cart", cartItm, "Language", refetch);
+
+      axiosSecure.post("/cart", cartItm).then((response) => {
+        if (response.data.insertedId) {
+          toast.success("Course Added");
+        }
+      });
     } else {
-      console.log("first");
       navigate("/login", { state: { from: location } });
     }
   };

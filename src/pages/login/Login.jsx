@@ -28,6 +28,7 @@ const Login = () => {
     signIn(data.email, data.pwd)
       .then((userCredential) => {
         userCredential.user;
+        reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -48,11 +49,8 @@ const Login = () => {
         role: "student",
       };
 
-      axiosSecure.post("/allusers", newUser).then((response) => {
-        if (response.data.insertedId) {
-          reset();
-          navigate(from, { replace: true });
-        }
+      axiosSecure.post("/allusers", newUser).then(() => {
+        navigate(from, { replace: true });
       });
     });
   };

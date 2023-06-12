@@ -1,5 +1,3 @@
-import { AiOutlineShoppingCart } from "react-icons/ai";
-
 const ClsData = ({ course }) => {
   const {
     course_name,
@@ -22,11 +20,6 @@ const ClsData = ({ course }) => {
         <p>Enrolled: {student_enroll}</p>
         <p>Available: {available_seats}</p>
         <p>Price:$ {course_price}</p>
-      </div>
-      <div className="card-actions justify-end m-3">
-        <button className="btn btn-md  btn-accent text-white">
-          <AiOutlineShoppingCart /> Add Cart
-        </button>
       </div>
     </div>
   );
