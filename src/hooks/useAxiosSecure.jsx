@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import { toast } from "react-hot-toast";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
@@ -28,8 +27,7 @@ const useAxiosSecure = () => {
           error.response &&
           (error.response.status === 401 || error.response.status === 403)
         ) {
-          toast.error("Unauthorized");
-          await logOut();
+          logOut();
           navigate("/login");
         }
         return Promise.reject(error);

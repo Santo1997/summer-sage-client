@@ -2,9 +2,11 @@ import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
+// import useAuthor from "../hooks/useAuthor";
 
-const PrivateRoutes = ({ children }) => {
+const StudentRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
+  //   const [isAuthor, isAuthorLoading] = useAuthor();
   const loaction = useLocation();
   const toastShownRef = useRef(false);
 
@@ -16,7 +18,7 @@ const PrivateRoutes = ({ children }) => {
   }, [user]);
 
   if (loading) {
-    return <progress className="progress w-56 bg-red-600"></progress>;
+    return <progress className="progress w-56"></progress>;
   }
 
   if (user) {
@@ -26,4 +28,4 @@ const PrivateRoutes = ({ children }) => {
   return <Navigate to="/login" state={{ from: loaction }} replace></Navigate>;
 };
 
-export default PrivateRoutes;
+export default StudentRoutes;

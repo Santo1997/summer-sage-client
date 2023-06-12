@@ -17,6 +17,10 @@ import Signup from "../pages/signup/Signup";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../pages/error/Error";
 import { coursesAndTeachers } from "../loader/DataLoader";
+import StudentRoutes from "./StudentRoutes";
+import InstractorRoutes from "./InstractorRoutes";
+import AdminRoutes from "./AdminRoutes";
+import Payment from "../pages/dashboard/student/payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -54,34 +58,71 @@ const router = createBrowserRouter([
         <Dashboard />
       </PrivateRoutes>
     ),
+    errorElement: <Error />,
     children: [
       {
         path: "selected_cls",
-        element: <SelectCls></SelectCls>,
+        element: (
+          <StudentRoutes>
+            <SelectCls />
+          </StudentRoutes>
+        ),
       },
       {
         path: "enrolled",
-        element: <Enrolled></Enrolled>,
+        element: (
+          <StudentRoutes>
+            <Enrolled />
+          </StudentRoutes>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <StudentRoutes>
+            <Payment />
+          </StudentRoutes>
+        ),
       },
       {
         path: "add_cls",
-        element: <AddCls></AddCls>,
+        element: (
+          <InstractorRoutes>
+            <AddCls />
+          </InstractorRoutes>
+        ),
       },
       {
         path: "update_cls/:id",
-        element: <UpdateCls></UpdateCls>,
+        element: (
+          <InstractorRoutes>
+            <UpdateCls />
+          </InstractorRoutes>
+        ),
       },
       {
         path: "my_cls",
-        element: <MyCls></MyCls>,
+        element: (
+          <InstractorRoutes>
+            <MyCls />
+          </InstractorRoutes>
+        ),
       },
       {
         path: "manage_cls",
-        element: <ManageCls></ManageCls>,
+        element: (
+          <AdminRoutes>
+            <ManageCls />
+          </AdminRoutes>
+        ),
       },
       {
         path: "manage_user",
-        element: <ManageUser></ManageUser>,
+        element: (
+          <AdminRoutes>
+            <ManageUser />
+          </AdminRoutes>
+        ),
       },
     ],
   },

@@ -4,10 +4,12 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
+import useAuthor from "../../../hooks/useAuthor";
 
 const CourseData = ({ course }) => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
+  const [isAuthor] = useAuthor();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -69,7 +71,11 @@ const CourseData = ({ course }) => {
           <div className="card-actions justify-end">
             <button
               onClick={() => handleCart(course)}
-              disabled={available_seats === 0}
+              disabled={
+                available_seats === 0 ||
+                isAuthor === "instractor" ||
+                isAuthor === "admin"
+              }
               className="btn btn-sm btn-accent text-white"
             >
               <BiSelectMultiple /> Select

@@ -1,6 +1,18 @@
+import { useEffect } from "react";
+import anime from "animejs";
 import DasLinks from "./DasLinks";
 
 const DasHeader = ({ children }) => {
+  useEffect(() => {
+    anime({
+      targets: ".drawer",
+      opacity: [0, 1],
+      translateY: ["-20px", "0px"],
+      duration: 600,
+      easing: "easeInOutSine",
+    });
+  }, []);
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

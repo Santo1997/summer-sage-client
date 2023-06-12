@@ -1,26 +1,38 @@
 import { BsFillTrashFill } from "react-icons/bs";
 import useCart from "../../../hooks/useCart";
-import axios from "axios";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import anime from "animejs";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SelectCls = () => {
   const [cart, refetch] = useCart("carts");
+  const [axiosSecure] = useAxiosSecure();
+  useEffect(() => {
+    animateTableRows();
+  }, [cart]);
+
+  const animateTableRows = () => {
+    anime({
+      targets: ".table-row",
+      opacity: [0, 1],
+      translateY: [-50, 0],
+      duration: 3000,
+      delay: anime.stagger(100),
+    });
+  };
 
   const handleDelete = (id) => {
     const confirmed = window.confirm("Want to delete item?");
 
     if (confirmed) {
-      axios
-        .delete(`http://localhost:5000/carts/${id}`)
-        .then((response) => {
-          if (response.data.deletedCount > 0) {
-            toast.success(` Class Delete`);
-            refetch();
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      axiosSecure.delete(`carts/${id}`).then((response) => {
+        if (response.data.deletedCount > 0) {
+          toast.success(` Class Delete`);
+          refetch();
+        }
+      });
     }
   };
 
@@ -43,7 +55,7 @@ const SelectCls = () => {
             </thead>
             <tbody>
               {cart.map((itm, index) => (
-                <tr key={itm._id}>
+                <tr key={itm._id} className="table-row">
                   <th>{index + 1}</th>
                   <td className="flex items-center gap-3 justify-center">
                     <div className="avatar ring-1 rounded-lg">
@@ -68,9 +80,11 @@ const SelectCls = () => {
                     >
                       <BsFillTrashFill /> Delete
                     </button>
-                    <button className="btn btn-xs btn-outline me-3 btn-warning">
-                      Payment
-                    </button>
+                    <Link to={`../payment/${itm._id}`}>
+                      <button className="btn btn-xs btn-outline me-3 btn-warning">
+                        Payment
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
