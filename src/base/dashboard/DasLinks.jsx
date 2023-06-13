@@ -6,9 +6,25 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 
 import Activelink from "../Activelink";
 import useAuthor from "../../hooks/useAuthor";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const DasLinks = () => {
   const [isAuthor] = useAuthor();
+  const { logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const from = "/";
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -79,6 +95,11 @@ const DasLinks = () => {
       </li>
       <li className="text-lg">
         <Activelink to="/courses">Classes</Activelink>
+      </li>
+      <li className="text-lg">
+        <button className="btn-md" onClick={handleLogOut}>
+          LogOut
+        </button>
       </li>
     </>
   );

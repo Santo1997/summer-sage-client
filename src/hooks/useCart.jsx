@@ -3,7 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
-const useCart = (route) => {
+const useCart = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
 
@@ -11,7 +11,7 @@ const useCart = (route) => {
     queryKey: ["cart", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure(`/${route}?user=${user?.email}`);
+      const res = await axiosSecure(`/carts?user=${user?.email}`);
       return res.data;
     },
   });

@@ -27,7 +27,7 @@ const Slider = () => {
           <div className="bg-[url('https://i.ibb.co/7WBVCpk/happy-high-school-students-raising-their-hands-on-a-class.jpg')] bg-[rgba(0,0,0,0.5)] bg-blend-multiply w-full h-auto bg-center bg-cover bg-no-repeat">
             <div className="px-20 py-56 w-6/12 text-white">
               <h1 className="text-32xl">Welcome to</h1>
-              <h1 className="text-4xl font-bold">Summer Cump</h1>
+              <h1 className="text-4xl font-bold">Summer Sage</h1>
               <p className="mt-5  text-base">
                 Explore diverse languages, connect with cultures, and embark on
                 a linguistic journey like no other. Learn, engage, and celebrate

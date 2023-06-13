@@ -7,7 +7,7 @@ import { AuthContext } from "../../../../provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import useCart from "../../../../hooks/useCart";
 
-const CheckoutFrom = ({ cart, price }) => {
+const CheckoutFrom = ({ filterData, price }) => {
   const {
     _id,
     course_name,
@@ -15,11 +15,12 @@ const CheckoutFrom = ({ cart, price }) => {
     langId,
     student_enroll,
     available_seats,
-  } = cart[0];
+  } = filterData;
+
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
-  const [, refetch] = useCart("carts");
+  const [, refetch] = useCart();
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -33,6 +34,19 @@ const CheckoutFrom = ({ cart, price }) => {
       });
     }
   }, [price, axiosSecure]);
+
+  const formatDate = () => {
+    const date = new Date();
+    const formattedDate = date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+    return formattedDate;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -86,11 +100,11 @@ const CheckoutFrom = ({ cart, price }) => {
         course_img,
         student_enroll: student_enroll + 1,
         available_seats: available_seats - 1,
-        date: new Date(),
+        date: formatDate(),
         enroll: "success",
       };
       axiosSecure.post("/payments", payment).then((res) => {
-        if (res.data.result.insertedId) {
+        if (res.data.insertedId) {
           toast.success("Payment Successfull");
         }
       });

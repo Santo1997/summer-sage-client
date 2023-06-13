@@ -1,15 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiSelectMultiple } from "react-icons/bi";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-hot-toast";
-import useAuthor from "../../../hooks/useAuthor";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const CourseData = ({ course }) => {
   const { user } = useContext(AuthContext);
+  const [isAuthor, setIsAuthor] = useState("student");
   const [axiosSecure] = useAxiosSecure();
-  const [isAuthor] = useAuthor();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,6 +23,26 @@ const CourseData = ({ course }) => {
     student_enroll,
     available_seats,
   } = course;
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:5000/checkRole/${user.email}`)
+        .then((response) => {
+          setIsAuthor(response.data.role);
+        });
+    }
+  }, [user, course]);
+
+  const { refetch, data: clsID = [] } = useQuery(
+    ["carts", user?.email],
+    async () => {
+      const response = await axios.get(
+        `http://localhost:5000/carts?user=${user?.email}`
+      );
+      return response.data.map((course) => course.langId);
+    }
+  );
 
   const handleCart = (itm) => {
     itm;
@@ -38,6 +59,7 @@ const CourseData = ({ course }) => {
 
       axiosSecure.post("/cart", cartItm).then((response) => {
         if (response.data.insertedId) {
+          refetch();
           toast.success("Course Added");
         }
       });
@@ -72,6 +94,7 @@ const CourseData = ({ course }) => {
             <button
               onClick={() => handleCart(course)}
               disabled={
+                clsID.includes(_id) ||
                 available_seats === 0 ||
                 isAuthor === "instractor" ||
                 isAuthor === "admin"

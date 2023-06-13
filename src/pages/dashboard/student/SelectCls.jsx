@@ -1,27 +1,25 @@
 import { BsFillTrashFill } from "react-icons/bs";
 import useCart from "../../../hooks/useCart";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import anime from "animejs";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SelectCls = () => {
-  const [cart, refetch] = useCart("carts");
+  const [cart, refetch] = useCart();
   const [axiosSecure] = useAxiosSecure();
-  useEffect(() => {
-    animateTableRows();
-  }, [cart]);
 
-  const animateTableRows = () => {
+  useEffect(() => {
     anime({
-      targets: ".table-row",
+      targets: ".user-row",
+      translateY: [-100, 0],
       opacity: [0, 1],
-      translateY: [-50, 0],
-      duration: 3000,
+      duration: 1000,
+      easing: "easeOutQuad",
       delay: anime.stagger(100),
     });
-  };
+  }, [cart]);
 
   const handleDelete = (id) => {
     const confirmed = window.confirm("Want to delete item?");
@@ -55,7 +53,7 @@ const SelectCls = () => {
             </thead>
             <tbody>
               {cart.map((itm, index) => (
-                <tr key={itm._id} className="table-row">
+                <tr key={itm._id} className="user-row">
                   <th>{index + 1}</th>
                   <td className="flex items-center gap-3 justify-center">
                     <div className="avatar ring-1 rounded-lg">

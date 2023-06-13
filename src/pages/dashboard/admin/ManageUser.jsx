@@ -1,10 +1,33 @@
-import { toast } from "react-hot-toast";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useCart from "../../../hooks/useCart";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
+import anime from "animejs";
 
 const ManageUser = () => {
-  const [cart, refetch] = useCart("users");
+  const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
+
+  const { refetch, data: users = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(`/users`);
+      return res.data;
+    },
+  });
+
+  useEffect(() => {
+    anime({
+      targets: ".user-row",
+      translateY: [-100, 0],
+      opacity: [0, 1],
+      duration: 1000,
+      easing: "easeOutQuad",
+      delay: anime.stagger(100),
+    });
+  }, [users]);
 
   const accessDBHandle = (id, itmData, notify) => {
     axiosSecure.put(`/updateUser/${id}`, itmData).then((response) => {
@@ -19,14 +42,13 @@ const ManageUser = () => {
     const instractor = {
       role: "instractor",
     };
-    console.log(instractor);
     accessDBHandle(itm._id, instractor, `${itm.name} Is Instractor Now`);
   };
+
   const handleAdmin = (itm) => {
     const instractor = {
       role: "admin",
     };
-    console.log(instractor);
     accessDBHandle(itm._id, instractor, `${itm.name} Is Admin Now`);
   };
 
@@ -44,8 +66,8 @@ const ManageUser = () => {
           </tr>
         </thead>
         <tbody>
-          {cart.map((itm, index) => (
-            <tr key={itm._id}>
+          {users.map((itm, index) => (
+            <tr key={itm._id} className="user-row">
               <th>{index + 1}</th>
               <td>
                 <div className="avatar">
