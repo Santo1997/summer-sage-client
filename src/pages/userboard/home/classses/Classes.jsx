@@ -9,7 +9,7 @@ const Classes = ({ courses }) => {
       <SectionTitle
         heading="Popular Classes"
         subHeading="Our interactive teaching method engages you in the learning process so that you learn
-communication skills and develop confidence quickly."
+        communication skills and develop confidence quickly."
       ></SectionTitle>
 
       <div className="grid grid-cols-3 gap-3">

@@ -5,7 +5,9 @@ const InstreactorData = ({ course }) => {
   const [userImg, setUserImg] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/teacher?user=${course_teacher.email}`)
+    fetch(
+      `https://assign12-camp-server.vercel.app/teacher?user=${course_teacher.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setUserImg(data[0].img);

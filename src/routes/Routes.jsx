@@ -21,6 +21,9 @@ import StudentRoutes from "./StudentRoutes";
 import InstractorRoutes from "./InstractorRoutes";
 import AdminRoutes from "./AdminRoutes";
 import Payment from "../pages/dashboard/student/payment/Payment";
+import AdminHome from "../pages/dashboard/admin/AdminHome";
+import InstractorHome from "../pages/dashboard/instractor/InstractorHome";
+import StudentHome from "../pages/dashboard/student/StudentHome";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +64,14 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        path: "student_home",
+        element: (
+          <StudentRoutes>
+            <StudentHome />
+          </StudentRoutes>
+        ),
+      },
+      {
         path: "selected_cls",
         element: (
           <StudentRoutes>
@@ -85,6 +96,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "instractor_home",
+        element: (
+          <InstractorRoutes>
+            <InstractorHome />
+          </InstractorRoutes>
+        ),
+      },
+      {
         path: "add_cls",
         element: (
           <InstractorRoutes>
@@ -106,6 +125,14 @@ const router = createBrowserRouter([
           <InstractorRoutes>
             <MyCls />
           </InstractorRoutes>
+        ),
+      },
+      {
+        path: "admin_home",
+        element: (
+          <AdminRoutes>
+            <AdminHome />
+          </AdminRoutes>
         ),
       },
       {

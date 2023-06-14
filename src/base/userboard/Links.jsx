@@ -1,17 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Activelink from "../Activelink";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Links = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isAuthor, setIsAuthor] = useState("student");
 
-  const from = "/";
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`https://assign12-camp-server.vercel.app/checkRole/${user.email}`)
+        .then((response) => {
+          setIsAuthor(response.data.role);
+        });
+    }
+  }, [user]);
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        navigate(from, { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -32,9 +43,23 @@ const Links = () => {
 
       {user ? (
         <>
-          <li className="text-lg">
-            <Activelink to="/dashboard">Dashboard</Activelink>
-          </li>
+          <>
+            {isAuthor === "admin" ? (
+              <li className="text-lg">
+                <Activelink to="/dashboard/admin_home">Dashboard</Activelink>
+              </li>
+            ) : isAuthor === "instractor" ? (
+              <li className="text-lg">
+                <Activelink to="/dashboard/instractor_home">
+                  Dashboard
+                </Activelink>
+              </li>
+            ) : isAuthor === "student" ? (
+              <li className="text-lg">
+                <Activelink to="/dashboard/student_home">Dashboard</Activelink>
+              </li>
+            ) : null}
+          </>
           <li className="text-lg">
             <button className="btn-md" onClick={handleLogOut}>
               LogOut

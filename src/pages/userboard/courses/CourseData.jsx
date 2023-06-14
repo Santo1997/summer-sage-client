@@ -27,7 +27,7 @@ const CourseData = ({ course }) => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/checkRole/${user.email}`)
+        .get(`https://assign12-camp-server.vercel.app/checkRole/${user.email}`)
         .then((response) => {
           setIsAuthor(response.data.role);
         });
@@ -38,7 +38,7 @@ const CourseData = ({ course }) => {
     ["carts", user?.email],
     async () => {
       const response = await axios.get(
-        `http://localhost:5000/carts?user=${user?.email}`
+        `https://assign12-camp-server.vercel.app/carts?user=${user?.email}`
       );
       return response.data.map((course) => course.langId);
     }

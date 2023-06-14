@@ -1,8 +1,7 @@
-import { AiFillDashboard } from "react-icons/ai";
+import { AiFillDashboard, AiOutlineHome } from "react-icons/ai";
 import { BiSelectMultiple } from "react-icons/bi";
 import { VscServerProcess } from "react-icons/vsc";
 import { MdPayment } from "react-icons/md";
-import { FaChalkboardTeacher } from "react-icons/fa";
 
 import Activelink from "../Activelink";
 import useAuthor from "../../hooks/useAuthor";
@@ -15,11 +14,10 @@ const DasLinks = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const from = "/";
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        navigate(from, { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -31,8 +29,14 @@ const DasLinks = () => {
       {isAuthor === "admin" && (
         <>
           <h3 className="text-xl flex items-center gap-1 mb-2">
-            <FaChalkboardTeacher /> Admin Dashboard
+            <AiFillDashboard />
+            Admin Dashboard
           </h3>
+          <li className="text-lg">
+            <Activelink to="admin_home">
+              <AiOutlineHome /> Admin Home
+            </Activelink>
+          </li>
           <li className="text-lg">
             <Activelink to="manage_cls">
               <BiSelectMultiple /> Manage Class
@@ -49,8 +53,13 @@ const DasLinks = () => {
       {isAuthor === "instractor" && (
         <>
           <h3 className="text-xl flex items-center gap-1 mb-2">
-            <FaChalkboardTeacher /> Instructor Dashboard
+            <AiFillDashboard /> Instructor Dashboard
           </h3>
+          <li className="text-lg">
+            <Activelink to="instractor_home">
+              <AiOutlineHome /> Instractor Home
+            </Activelink>
+          </li>
           <li className="text-lg">
             <Activelink to="add_cls">
               <BiSelectMultiple /> Add a Class
@@ -69,6 +78,11 @@ const DasLinks = () => {
           <h3 className="text-xl flex items-center gap-1 mb-2">
             <AiFillDashboard /> DashBoard
           </h3>
+          <li className="text-lg">
+            <Activelink to="student_home">
+              <AiOutlineHome /> Student Home
+            </Activelink>
+          </li>
           <li className="text-lg">
             <Activelink to="selected_cls">
               <BiSelectMultiple /> Selected Classes

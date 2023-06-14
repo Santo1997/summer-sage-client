@@ -13,7 +13,7 @@ const UpdateCls = () => {
     axiosSecure
       .get(`/courses/${param}`)
       .then((response) => setCourseData(response.data));
-  }, []);
+  }, [axiosSecure, param]);
 
   const { _id, course_name, available_seats, course_price, description } =
     courseData;

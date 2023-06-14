@@ -12,7 +12,7 @@ const Instractor = () => {
       setLoader(true);
     } else {
       fetch(
-        `http://localhost:5000/teacher?user=${courses[0].course_teacher.email}`
+        `https://assign12-camp-server.vercel.app/teacher?user=${courses[0].course_teacher.email}`
       )
         .then((res) => res.json())
         .then((data) => {

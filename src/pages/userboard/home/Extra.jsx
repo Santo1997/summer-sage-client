@@ -73,9 +73,9 @@ const Extra = () => {
               <AiFillCaretRight /> Friendly
             </li>
           </ul>
-          <button className="btn btn-lg btn-accent border-0 w-full rounded-none hover:text-accent hover:bg-slate-700 absolute bottom-0 right-0">
-            Learn More
-          </button>
+          <h1 className="w-full py-5 text-center rounded-none uppercase text-xl text-accent bg-slate-700 absolute bottom-0 right-0">
+            Visit Us
+          </h1>
         </div>
       </div>
     </>

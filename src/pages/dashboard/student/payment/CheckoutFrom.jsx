@@ -66,7 +66,6 @@ const CheckoutFrom = ({ filterData, price }) => {
     });
 
     if (error) {
-      console.log("error", error);
       setCardError(error.message);
     } else {
       setCardError("");
@@ -84,10 +83,6 @@ const CheckoutFrom = ({ filterData, price }) => {
         },
       });
 
-    if (confirmError) {
-      console.log(confirmError);
-    }
-
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
@@ -98,6 +93,7 @@ const CheckoutFrom = ({ filterData, price }) => {
         langId,
         course_name,
         course_img,
+        price,
         student_enroll: student_enroll + 1,
         available_seats: available_seats - 1,
         date: formatDate(),

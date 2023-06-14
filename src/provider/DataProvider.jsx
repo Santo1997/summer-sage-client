@@ -7,13 +7,13 @@ const DataProvider = ({ children }) => {
   const [courses, setCourses] = useState([]);
   const [teachers, setTeachers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/courses")
+    fetch("https://assign12-camp-server.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);
       });
 
-    fetch("http://localhost:5000/teachers")
+    fetch("https://assign12-camp-server.vercel.app/teachers")
       .then((res) => res.json())
       .then((data) => {
         setTeachers(data);
