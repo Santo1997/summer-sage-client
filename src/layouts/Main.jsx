@@ -39,7 +39,7 @@ const Main = () => {
           }`}
         >
           <Header toggleTheme={toggleTheme} />
-          <div className="mt-20 p-1 lg:p-6">
+          <div className="mt-24 p-1 lg:p-6">
             <Outlet />
           </div>
           <Toaster />
