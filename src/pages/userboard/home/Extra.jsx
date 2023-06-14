@@ -49,7 +49,7 @@ const Extra = () => {
             global community of language enthusiasts and provides a
             transformative summer of learning, exploration, and connection.
           </div>
-          <ul className="grid lg:grid-cols-2 text-lg">
+          <ul className="grid lg:grid-cols-2 text-lg mb-14">
             <li className="flex items-center gap-2">
               <AiFillCaretRight /> AiFillCaretRight
             </li>
