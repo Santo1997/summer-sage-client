@@ -17,8 +17,6 @@ const Enrolled = () => {
     },
   });
 
-  console.log(enrolled);
-
   useEffect(() => {
     anime({
       targets: ".user-row",
@@ -29,8 +27,6 @@ const Enrolled = () => {
       delay: anime.stagger(100),
     });
   }, [enrolled]);
-
-  console.log(enrolled);
 
   return (
     <div className="overflow-x-auto">

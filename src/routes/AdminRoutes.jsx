@@ -9,20 +9,19 @@ const AdminRoutes = ({ children }) => {
   const [isAuthor, isAuthorLoading] = useAuthor();
   const loaction = useLocation();
   const toastShownRef = useRef(false);
-  console.log(isAuthor);
 
   useEffect(() => {
     if (!user && !toastShownRef.current) {
       toast.error("You have to log in first to view details");
       toastShownRef.current = true;
     }
-  }, []);
+  }, [user]);
 
   if (loading || isAuthorLoading) {
     return <progress className="progress w-56"></progress>;
   }
 
-  if (user || isAuthor === "admin") {
+  if (user && isAuthor === "admin") {
     return children;
   }
 

@@ -1,13 +1,24 @@
 import { useContext } from "react";
 import Links from "./Links";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Header = ({ toggleTheme }) => {
   const { user } = useContext(AuthContext);
   return (
     <>
-      <div className="navbar bg-slate-800 text-white relative">
+      <div className="navbar bg-slate-800 text-white fixed top-0 right-0 z-50">
         <div className="navbar-start">
+          <div className="avatar">
+            <div className="w-12 lg:w-14 ms-3 rounded-full ring">
+              <img src="./logo.jpeg" />
+            </div>
+          </div>
+          <h1 className="btn btn-ghost normal-case text-4xl">
+            <Link to={"/"}>Summer Sage</Link>
+          </h1>
+        </div>
+        <div className="navbar-center lg:flex">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -32,9 +43,6 @@ const Header = ({ toggleTheme }) => {
               <Links></Links>
             </ul>
           </div>
-          <h1 className="btn btn-ghost normal-case text-4xl">Summer Sage</h1>
-        </div>
-        <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 bg-slate-800">
             <Links></Links>
           </ul>

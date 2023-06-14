@@ -37,7 +37,7 @@ const Slider = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/b5rk9v1/open-doodles-sitting-and-reading.gif')] bg-[rgba(0,0,0,0.5)] bg-blend-multiply w-full h-auto bg-right bg-contain bg-no-repeat">
+          <div className="bg-[url('https://i.ibb.co/CHJQxq1/open-doodles.gif')] bg-[rgba(0,0,0,0.4)] bg-blend-multiply w-full h-auto bg-right bg-contain bg-no-repeat">
             <div className="px-20 py-56 w-6/12 text-white">
               <h1 className="text-4xl font-bold">
                 Achieve The Best Results With Us

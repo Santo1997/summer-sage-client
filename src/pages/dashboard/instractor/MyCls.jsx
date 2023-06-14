@@ -37,9 +37,16 @@ const MyCls = () => {
               </tr>
             </thead>
             <tbody>
-              {userCoursesCart.map((itm) => (
-                <tr key={itm._id}>
-                  <th>1</th>
+              {userCoursesCart.map((itm, index) => (
+                <tr
+                  key={itm._id}
+                  style={{
+                    color: itm.status === "denied" && "red",
+                    opacity: itm.status === "denied" && "0.5",
+                    pointerEvents: itm.status === "denied" && "none",
+                  }}
+                >
+                  <th>{index + 1}</th>
                   <td>
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
@@ -52,14 +59,20 @@ const MyCls = () => {
                   </td>
                   <td>{itm.student_enroll}</td>
                   <td>{itm.available_seats}</td>
-                  <td>
-                    $<span>{itm.course_price}</span>
-                  </td>
+                  <td>${itm.course_price}</td>
                   <td>
                     {itm.status === "pending" ? (
-                      <h2 className="font-bold text-warning">{itm.status}</h2>
+                      <h2 className="font-bold text-warning capitalize">
+                        {itm.status}
+                      </h2>
+                    ) : itm.status === "approved" ? (
+                      <h2 className="font-bold text-success capitalize">
+                        {itm.status}
+                      </h2>
                     ) : (
-                      <h2 className="font-bold text-success">{itm.status}</h2>
+                      <h2 className="font-bold text-error capitalize">
+                        {itm.status}
+                      </h2>
                     )}
                   </td>
                   <td className="text-left">

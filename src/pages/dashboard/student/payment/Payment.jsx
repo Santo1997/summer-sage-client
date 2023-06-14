@@ -43,8 +43,6 @@ const Payment = () => {
     });
   }, [axiosSecure, user]);
 
-  console.log(paymentHistory);
-
   return (
     <>
       {loader ? (

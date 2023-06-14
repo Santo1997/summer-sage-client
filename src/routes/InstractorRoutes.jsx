@@ -15,13 +15,13 @@ const InstractorRoutes = ({ children }) => {
       toast.error("You have to log in first to view details");
       toastShownRef.current = true;
     }
-  }, []);
+  }, [user]);
 
   if (loading || isAuthorLoading) {
     return <progress className="progress w-56"></progress>;
   }
 
-  if (user || isAuthor === "instractor") {
+  if (user && isAuthor === "instractor") {
     return children;
   }
 

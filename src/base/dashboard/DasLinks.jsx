@@ -52,7 +52,7 @@ const DasLinks = () => {
             <FaChalkboardTeacher /> Instructor Dashboard
           </h3>
           <li className="text-lg">
-            <Activelink to="Add_cls">
+            <Activelink to="add_cls">
               <BiSelectMultiple /> Add a Class
             </Activelink>
           </li>
