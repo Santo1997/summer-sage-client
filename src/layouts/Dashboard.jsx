@@ -14,16 +14,22 @@ const Dashboard = () => {
       return <Title title="Dashboard" />;
     } else if (pathname === "/dashboard/selected_cls") {
       return <Title title="Selected Classes" />;
+    } else if (pathname === "/dashboard/student_home") {
+      return <Title title="Student Dashboard" />;
     } else if (pathname === "/dashboard/enrolled") {
       return <Title title="Enrolled Classes" />;
     } else if (pathname === "/dashboard/payment") {
       return <Title title="Payment" />;
+    } else if (pathname === "/dashboard/instractor_home") {
+      return <Title title="Instractor Dashboard" />;
     } else if (pathname === "/dashboard/add_cls") {
       return <Title title="Add Class" />;
     } else if (pathname === "/dashboard/update_cls") {
       return <Title title="Update Class" />;
     } else if (pathname === "/dashboard/my_cls") {
       return <Title title="My Classes" />;
+    } else if (pathname === "/dashboard/admin_home") {
+      return <Title title="Admin Dashboard" />;
     } else if (pathname === "/dashboard/manage_cls") {
       return <Title title="Manage Classes" />;
     } else if (pathname === "/dashboard/manage_user") {

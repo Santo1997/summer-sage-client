@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer className="footer px-10 py-4 border-t bg-slate-800 text-white border-b border-slate-500">
+      <footer className="footer px-5 lg:px-10 py-4 border-t bg-slate-800 text-white border-b border-slate-500">
         <div className="items-center grid-flow-col">
           <div className="avatar me-2">
             <div className="w-20 rounded">

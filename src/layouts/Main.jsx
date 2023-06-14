@@ -8,9 +8,8 @@ export const CourseContext = createContext([]);
 
 const Main = () => {
   const [theme, setTheme] = useState("light");
-  const { courses } = useLoaderData();
+  const courses = useLoaderData();
   const location = useLocation();
-
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -40,7 +39,7 @@ const Main = () => {
           }`}
         >
           <Header toggleTheme={toggleTheme} />
-          <div className="mt-20 p-6">
+          <div className="mt-20 p-1 lg:p-6">
             <Outlet />
           </div>
           <Toaster />

@@ -16,7 +16,6 @@ import Login from "../pages/login/Login";
 import Signup from "../pages/signup/Signup";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../pages/error/Error";
-import { coursesAndTeachers } from "../loader/DataLoader";
 import StudentRoutes from "./StudentRoutes";
 import InstractorRoutes from "./InstractorRoutes";
 import AdminRoutes from "./AdminRoutes";
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Main />,
     errorElement: <Error />,
-    loader: coursesAndTeachers,
+    loader: () => fetch(`https://assign12-camp-server.vercel.app/courses`),
     children: [
       {
         path: "/",

@@ -9,19 +9,19 @@ const Extra = () => {
     <>
       <SectionTitle heading="Ourselves"></SectionTitle>
 
-      <div className="grid grid-cols-3 ">
-        <div className="card bg-slate-700 text-accent rounded-none ">
+      <div className="lg:grid px-3 lg:px-0 lg:grid-cols-3 ">
+        <div className="card bg-slate-700 text-accent  rounded-none w-full ">
           <figure>
             <img src={img} />
           </figure>
-          <div className="grid grid-cols-3 p-10 pb-2">
+          <div className="grid lg:grid-cols-3 p-5 lg:p-10 pb-2">
             <AiFillBank size={70} />
-            <div className="col-span-2">
+            <div className="lg:col-span-2">
               <h2 className="card-title">Come And Visit Us</h2>
               <p>359 Van Brunt St, Brooklyn, NY 11231, USA</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 p-10 pt-2">
+          <div className="grid lg:grid-cols-3 p-5 lg:p-10 pt-2">
             <FaMobileAlt size={70} />
             <div className="col-span-2">
               <h2 className="card-title">Book A Free Lesson</h2>
@@ -33,21 +33,23 @@ const Extra = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-2 card-body relative">
-          <h2 className="card-title text-3xl">
-            Scuola New York English School
-          </h2>
-          <h2 className="">36 W 138th St, New York, NY, 10037</h2>
+        <div className="col-span-2 card-body relative p-5 lg:p-5">
+          <h2 className="card-title text-3xl">Summer Sage Academy</h2>
+          <h2 className="font-bold">36 W 138th St, New York, NY, 10037</h2>
 
-          <div className="my-10">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            eveniet inventore aperiam repellendus quaerat provident
-            necessitatibus, ipsa non eligendi sed eaque aut velit ducimus nisi
-            odit maiores dignissimos accusantium, sunt cupiditate maxime dolorem
-            repellat, voluptate nostrum et! Doloribus atque, esse quasi, iure
-            perspiciatis et ipsum expedita qui eos, aut ab.
+          <div className=" lg:my-10">
+            The Summer Sage Academy is a prestigious institution that offers
+            immersive language learning programs in a picturesque setting. With
+            a diverse and inclusive community, the academy welcomes students of
+            all ages and backgrounds. Experienced faculty members inspire and
+            guide students to unlock their linguistic potential. The academy
+            offers a comprehensive curriculum, covering a wide range of
+            languages. Cultural immersion activities and state-of-the-art
+            language labs enhance the learning experience. The academy fosters a
+            global community of language enthusiasts and provides a
+            transformative summer of learning, exploration, and connection.
           </div>
-          <ul className="grid grid-cols-2 text-lg">
+          <ul className="grid lg:grid-cols-2 text-lg">
             <li className="flex items-center gap-2">
               <AiFillCaretRight /> AiFillCaretRight
             </li>

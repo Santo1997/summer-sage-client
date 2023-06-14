@@ -10,7 +10,7 @@ const Instructors = ({ courses }) => {
         subHeading="Our teachers are accomplished, creative individuals who know their subjects intimately. What’s more, they care deeply about their students."
       ></SectionTitle>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid px-3 lg:px-0 lg:grid-cols-3 gap-3">
         {showCoursesTeacher.map((courses) => (
           <InstractorData courses={courses} key={courses._id} />
         ))}

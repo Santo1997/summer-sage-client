@@ -12,7 +12,7 @@ const Classes = ({ courses }) => {
         communication skills and develop confidence quickly."
       ></SectionTitle>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid px-3 lg:px-0 lg:grid-cols-3 gap-3">
         {galItm.map((course) => (
           <ClsData course={course} key={course._id} />
         ))}

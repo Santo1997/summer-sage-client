@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Title from "../../components/Title";
 
 const Error = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Title title="Error" />
@@ -11,12 +13,12 @@ const Error = () => {
             src="https://i.ibb.co/SfNY7Kj/162-1622413-4chan-404-pages-hd-png-download.png"
             className="w-full border border-sky-400 mb-5 rounded-md"
           />
-          <Link
-            to="/"
+          <button
+            onClick={() => navigate("/")}
             className="btn rounded btn-primary bg-sky-500 border-sky-500 text-white"
           >
             Back to homepage
-          </Link>
+          </button>
         </div>
       </div>
     </>

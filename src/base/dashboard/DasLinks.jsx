@@ -102,13 +102,13 @@ const DasLinks = () => {
       )}
       <div className="border border-green-500 w-full my-8"></div>
       <li className="text-lg">
-        <Activelink to="/">Home</Activelink>
+        <Activelink to="../../">Home</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/instractor">Instructors</Activelink>
+        <Activelink to="../../instractor">Instructors</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/courses">Classes</Activelink>
+        <Activelink to="../../courses">Classes</Activelink>
       </li>
       <li className="text-lg">
         <button className="btn-md" onClick={handleLogOut}>

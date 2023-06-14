@@ -10,7 +10,7 @@ const InfoSection = () => {
         heading="Why Us?"
         subHeading="Language Courses to Help You Explore The World"
       ></SectionTitle>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid px-3 lg:px-0 lg:grid-cols-3 gap-3">
         <div className="card-body items-center text-center border-2 border-accent">
           <GiTeacher size={50} className="text-accent" />
           <h1 className="text-2xl">Skilled Teachers</h1>

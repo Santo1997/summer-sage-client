@@ -24,9 +24,9 @@ const Slider = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/7WBVCpk/happy-high-school-students-raising-their-hands-on-a-class.jpg')] bg-[rgba(0,0,0,0.5)] bg-blend-multiply w-full h-auto bg-center bg-cover bg-no-repeat">
-            <div className="px-20 py-56 w-6/12 text-white">
-              <h1 className="text-32xl">Welcome to</h1>
+          <div className="bg-[url('https://i.ibb.co/7WBVCpk/happy-high-school-students-raising-their-hands-on-a-class.jpg')] bg-[rgba(0,0,0,0.5)] bg-blend-multiply w-full h-96 lg:h-auto bg-center bg-cover bg-no-repeat">
+            <div className="px-5 py-14 lg:px-20 lg:py-56 f-full lg:w-6/12 text-white">
+              <h1 className="text-3xl">Welcome to</h1>
               <h1 className="text-4xl font-bold">Summer Sage</h1>
               <p className="mt-5  text-base">
                 Explore diverse languages, connect with cultures, and embark on
@@ -37,9 +37,9 @@ const Slider = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-[url('https://i.ibb.co/CHJQxq1/open-doodles.gif')] bg-[rgba(0,0,0,0.4)] bg-blend-multiply w-full h-auto bg-right bg-contain bg-no-repeat">
-            <div className="px-20 py-56 w-6/12 text-white">
-              <h1 className="text-4xl font-bold">
+          <div className="bg-[url('https://i.ibb.co/CHJQxq1/open-doodles.gif')] bg-[rgba(0,0,0,0.4)] bg-blend-multiply w-full h-96 lg:h-auto bg-right bg-contain bg-no-repeat">
+            <div className="px-5 py-14 lg:px-20 lg:py-56 lg:w-6/12 text-white">
+              <h1 className="text-3xl lg:text-4xl font-bold">
                 Achieve The Best Results With Us
               </h1>
               <p className="mt-5  text-base">

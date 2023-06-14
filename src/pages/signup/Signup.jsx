@@ -3,9 +3,13 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleProvider = new GoogleAuthProvider();
 
 const Signup = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, handleGoogleSignIn } =
+    useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const [err, setErr] = useState("");
 
@@ -44,6 +48,24 @@ const Signup = () => {
       .catch((error) => {
         setErr(error.message);
       });
+  };
+
+  const googleHandle = () => {
+    handleGoogleSignIn(googleProvider).then((result) => {
+      GoogleAuthProvider.credentialFromResult(result);
+      const user = result.user;
+
+      const newUser = {
+        img: user.photoURL,
+        name: user.displayName,
+        email: user.email,
+        role: "student",
+      };
+
+      axiosSecure.post("/allusers", newUser).then(() => {
+        navigate(from, { replace: true });
+      });
+    });
   };
 
   const password = useRef({});
@@ -189,6 +211,15 @@ const Signup = () => {
               </Link>
             </p>
           </form>
+          <div className="divider">OR Go With</div>
+          <div className=" text-center mb-10">
+            <button
+              onClick={googleHandle}
+              className="btn btn-outline btn-success btn-md"
+            >
+              Google
+            </button>
+          </div>
         </div>
       </div>
     </div>

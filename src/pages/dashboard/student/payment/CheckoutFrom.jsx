@@ -6,6 +6,7 @@ import "./Checkout.css";
 import { AuthContext } from "../../../../provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import useCart from "../../../../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutFrom = ({ filterData, price }) => {
   const {
@@ -26,6 +27,7 @@ const CheckoutFrom = ({ filterData, price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (price > 0) {
@@ -82,6 +84,9 @@ const CheckoutFrom = ({ filterData, price }) => {
           },
         },
       });
+    if (confirmError) {
+      confirmError;
+    }
 
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
@@ -93,7 +98,7 @@ const CheckoutFrom = ({ filterData, price }) => {
         langId,
         course_name,
         course_img,
-        price,
+        price: parseInt(price.toFixed(2)),
         student_enroll: student_enroll + 1,
         available_seats: available_seats - 1,
         date: formatDate(),
@@ -107,6 +112,7 @@ const CheckoutFrom = ({ filterData, price }) => {
       axiosSecure.put(`/updateInfoCourse/${langId}`, payment);
       axiosSecure.delete(`/carts/${_id}`);
       refetch();
+      navigate(`../payment/${null}`);
     }
   };
 
