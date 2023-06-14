@@ -18,13 +18,14 @@ The Summer Sage Academy is a prestigious institution that offers immersive langu
 
 **Client:** TailwindCSS , React
 
-**Server:** Node, Express
+**Server:** Node, Express , JWT
 
 **Database:** MongoDB
 
 **package:**
 
 - `react-helmet`
+- `react-hook-form`
 - `react-anime`
 - `tanStack-query`
 - `axios`
