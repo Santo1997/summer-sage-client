@@ -1,5 +1,3 @@
-# b7a11-toy-marketplace-client-side-Santo1997
-
 # Summer Sage
 
 The Summer Sage Academy is a prestigious institution that offers immersive language learning programs in a picturesque setting. With a diverse and inclusive community, the academy welcomes students of all ages and backgrounds.
